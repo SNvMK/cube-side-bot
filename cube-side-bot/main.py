@@ -78,7 +78,7 @@ async def new(ctx, содержание):
         "description": содержание,
         "author": {
             "name": ctx.author.name,
-            "icon_url": ctx.author.avatar_url
+            "icon_url": ctx.author.avatar_url._url
         },
         "name": discord.Colour.blurple()
     }
