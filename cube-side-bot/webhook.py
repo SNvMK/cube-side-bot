@@ -7,6 +7,9 @@ class Webhook:
 
     async def execute(self, content=None, embeds=None):
         payload = {}
+        headers = {
+            "Content-Type": "application/json"
+        }
 
         if content:
             payload["content"] = content
@@ -15,5 +18,5 @@ class Webhook:
             payload["embeds"] = embeds
 
         async with aiohttp.ClientSession() as s:
-            async with s.post(self.url, json=payload) as r:
+            async with s.post(self.url, json=payload, headers=headers) as r:
                 print(r)

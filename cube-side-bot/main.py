@@ -76,11 +76,7 @@ async def new(ctx, содержание):
     embed = {
         "title": "Новость!",
         "description": содержание,
-        "author": {
-            "name": ctx.author.name,
-            "icon_url": ctx.author.avatar_url._url
-        },
-        "name": 0x7289DA
+        "color": 0x7289DA
     }
 
     if ctx.author.guild_permissions.administrator:
