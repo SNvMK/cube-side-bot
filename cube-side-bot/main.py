@@ -1,16 +1,23 @@
 import asyncio
 import aiosqlite
-import aiohttp
 
 import discord
 import discord_slash
 
+from .webhook import Webhook
+
 
 GUILD_IDS = [804650085052055563]
+
 client = discord.AutoShardedClient(
     intents=discord.Intents.all()
 )
 slash = discord_slash.SlashCommand(client, auto_register=True, auto_delete=True)
+
+rules = Webhook("https://discord.com/api/webhooks/804673807251537962/o029o_6jGB2pUct2tC-crJsz4OLn1Vw_5heAJ1juaFD2q6nMBODN1OqpDyBLxjSXzV2o")
+news = Webhook("https://discord.com/api/webhooks/804683405072662528/JKR9KeU-Fqb7JRJkOcLjyJtlNQ48sRhbYu9dCyXAA7Og08Z_93zNYk0P5nDMjRYAXVwS")
+faqs = Webhook("https://discord.com/api/webhooks/804673617300291594/yKFqI2Us3IAOYkmYl0baZwtuNqqt9jr26vE-gBA_RignkTYwJzaVGC5GVQ63DhH5oGvp")
+audit = Webhook("https://discord.com/api/webhooks/804671873249574942/J2lymeeIz7tfgqDihEIXANV1iw3U6w5iSoUh9U6N84CJSCffzNXI3ZxWnHWiVyWvz1gd")
 
 @slash.slash(
     name="пинг",
@@ -58,6 +65,42 @@ async def server(ctx):
 
     await ctx.ack()
     await ctx.send(embed=embed)
+
+@slash.slash(
+    name="новость",
+    description="Добавить новость. Только для админов!",
+    guild_ids=GUILD_IDS
+)
+async def new(ctx, *, content):
+    await ctx.ack(eat=True)
+    embed = discord.Embed(
+        title="Новости!",
+        description=content,
+        color=discord.Colour.blurple()
+    )
+    embed.set_author(
+        name=ctx.author.name,
+        avatar=ctx.author.avatar_url
+    )
+
+    if ctx.author.permissions.administrator:
+        await news.execute(embed=embed)
+    else:
+        await ctx.send("У вас нет прав администратора для публикации новостей!", hidden=True)
+
+@slash.slash(
+    name="чаво",
+    description="Новый ЧаВо(Часто задаваемый Вопрос)",
+    guild_ids=GUILD_IDS
+)
+async def faq(ctx, q, *, answer):
+    await ctx.ack(eat=True)
+    embed = discord.Embed(
+        title=q,
+        description=answer,
+        color=discord.Color.green()
+    )
+    await faqs.execute(embed=embed)
 
 @client.event
 async def on_ready():
