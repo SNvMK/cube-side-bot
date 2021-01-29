@@ -8,9 +8,6 @@ import discord_slash
 
 GUILD_IDS = [804650085052055563]
 client = discord.AutoShardedClient(
-    activity=discord.Game(
-        name=f"<:CubeSide:804651860869775391> CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N"
-    ),
     intents=discord.Intents.all()
 )
 slash = discord_slash.SlashCommand(client, auto_register=True, auto_delete=True)
@@ -61,6 +58,10 @@ async def server(ctx):
 
     await ctx.ack()
     await ctx.send(embed=embed)
+
+@client.event
+async def on_ready():
+    await client.change_presence(activity=discord.Game(name=f"{client.get_emoji(804651860869775391)} CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N"))
 
 async def get_token():
     async with aiosqlite.connect("info.db") as db:
