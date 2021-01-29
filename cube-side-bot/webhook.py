@@ -5,7 +5,7 @@ class Webhook:
     def __init__(self, url):
         self.url = url
 
-    async def execute(self, content, embeds):
+    async def execute(self, content=None, embeds=None):
         payload = {}
 
         if content:

@@ -84,7 +84,7 @@ async def new(ctx, содержание):
     )
 
     if ctx.author.guild_permissions.administrator:
-        await news.execute(embed=embed)
+        await news.execute(embeds=[embed])
     else:
         await ctx.send("У вас нет прав администратора для публикации новостей!", hidden=True)
 
@@ -100,7 +100,7 @@ async def faq(ctx, вопрос, ответ):
         description=ответ,
         color=discord.Color.green()
     )
-    await faqs.execute(embed=embed)
+    await faqs.execute(embeds=[embed])
 
 @client.event
 async def on_ready():
