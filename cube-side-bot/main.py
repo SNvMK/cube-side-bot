@@ -93,7 +93,7 @@ async def new(ctx, content):
     description="Новый ЧаВо(Часто задаваемый Вопрос)",
     guild_ids=GUILD_IDS
 )
-async def faq(ctx, q, *, answer):
+async def faq(ctx, q, answer):
     await ctx.ack(eat=True)
     embed = discord.Embed(
         title=q,
