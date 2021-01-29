@@ -9,7 +9,7 @@ import discord_slash
 GUILD_IDS = [804650085052055563]
 client = discord.AutoShardedClient(
     activity=discord.Game(
-        name="CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N"
+        name=f"<:CubeSide:804651860869775391> CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N"
     ),
     intents=discord.Intents.all()
 )
