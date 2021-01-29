@@ -83,7 +83,7 @@ async def new(ctx, содержание):
         icon_url=ctx.author.avatar_url
     )
 
-    if ctx.author.permissions.administrator:
+    if ctx.author.guild_permissions.administrator:
         await news.execute(embed=embed)
     else:
         await ctx.send("У вас нет прав администратора для публикации новостей!", hidden=True)
