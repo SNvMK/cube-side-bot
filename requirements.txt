@@ -1,4 +1,4 @@
 aiosqlite
 aiohttp
 discord
-git://github.com/eunwoo1104/discord-py-slash-command.git
+git+git://github.com/eunwoo1104/discord-py-slash-command.git
