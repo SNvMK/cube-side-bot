@@ -18,6 +18,7 @@ rules = Webhook("https://discord.com/api/webhooks/804673807251537962/o029o_6jGB2
 news = Webhook("https://discord.com/api/webhooks/804683405072662528/JKR9KeU-Fqb7JRJkOcLjyJtlNQ48sRhbYu9dCyXAA7Og08Z_93zNYk0P5nDMjRYAXVwS")
 faqs = Webhook("https://discord.com/api/webhooks/804673617300291594/yKFqI2Us3IAOYkmYl0baZwtuNqqt9jr26vE-gBA_RignkTYwJzaVGC5GVQ63DhH5oGvp")
 audit = Webhook("https://discord.com/api/webhooks/804671873249574942/J2lymeeIz7tfgqDihEIXANV1iw3U6w5iSoUh9U6N84CJSCffzNXI3ZxWnHWiVyWvz1gd")
+join_track = Webhook("https://discord.com/api/webhooks/804724673677623326/Hnby6pAeIAX4qXJ3UPApsOfOobcdEjDd9XsceD7xnxPN2miGZFa0axMCGlhC3TCX4r8n")
 
 @slash.slash(
     name="пинг",
@@ -96,7 +97,15 @@ async def faq(ctx, вопрос, ответ):
         "description": ответ,
         "color": 0x2ecc71
     }
-    await faqs.execute(embeds=[embed])
+    if ctx.guild.get_role(804721794053439569) in ctx.author.roles:
+        await faqs.execute(embeds=[embed])
+    else:
+        await ctx.send("У вас нет роли для публикации ЧаВо!", hidden=True)
+
+
+@client.event
+async def on_member_join(member):
+    join_track.execute(username=member.name, avatar=str(member.avatar_url), content="Зашел на сервер")
 
 @client.event
 async def on_ready():
