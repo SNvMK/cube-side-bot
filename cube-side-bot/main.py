@@ -73,15 +73,15 @@ async def server(ctx):
 )
 async def new(ctx, содержание):
     await ctx.ack(eat=True)
-    embed = discord.Embed(
-        title="Новости!",
-        description=содержание,
-        color=discord.Colour.blurple()
-    )
-    embed.set_author(
-        name=ctx.author.name,
-        icon_url=ctx.author.avatar_url
-    )
+    embed = {
+        "title": "Новость!",
+        "description": содержание,
+        "author": {
+            "name": ctx.author.name,
+            "icon_url": ctx.author.avatar_url
+        },
+        "name": discord.Colour.blurple()
+    }
 
     if ctx.author.guild_permissions.administrator:
         await news.execute(embeds=[embed])
@@ -95,11 +95,11 @@ async def new(ctx, содержание):
 )
 async def faq(ctx, вопрос, ответ):
     await ctx.ack(eat=True)
-    embed = discord.Embed(
-        title=вопрос,
-        description=ответ,
-        color=discord.Color.green()
-    )
+    embed = {
+        "title": вопрос,
+        "description": ответ,
+        "color": discord.Color.green()
+    }
     await faqs.execute(embeds=[embed])
 
 @client.event
