@@ -80,7 +80,7 @@ async def new(ctx, содержание):
             "name": ctx.author.name,
             "icon_url": ctx.author.avatar_url._url
         },
-        "name": discord.Colour.blurple()
+        "name": 0x7289DA
     }
 
     if ctx.author.guild_permissions.administrator:
@@ -98,7 +98,7 @@ async def faq(ctx, вопрос, ответ):
     embed = {
         "title": вопрос,
         "description": ответ,
-        "color": discord.Color.green()
+        "color": 0x2ecc71
     }
     await faqs.execute(embeds=[embed])
 
