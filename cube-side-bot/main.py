@@ -71,16 +71,16 @@ async def server(ctx):
     description="Добавить новость. Только для админов!",
     guild_ids=GUILD_IDS
 )
-async def new(ctx, content):
+async def new(ctx, содержание):
     await ctx.ack(eat=True)
     embed = discord.Embed(
         title="Новости!",
-        description=content,
+        description=содержание,
         color=discord.Colour.blurple()
     )
     embed.set_author(
         name=ctx.author.name,
-        avatar=ctx.author.avatar_url
+        icon_url=ctx.author.avatar_url
     )
 
     if ctx.author.permissions.administrator:
@@ -93,11 +93,11 @@ async def new(ctx, content):
     description="Новый ЧаВо(Часто задаваемый Вопрос)",
     guild_ids=GUILD_IDS
 )
-async def faq(ctx, q, answer):
+async def faq(ctx, вопрос, ответ):
     await ctx.ack(eat=True)
     embed = discord.Embed(
-        title=q,
-        description=answer,
+        title=вопрос,
+        description=ответ,
         color=discord.Color.green()
     )
     await faqs.execute(embed=embed)
