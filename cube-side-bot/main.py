@@ -71,7 +71,7 @@ async def server(ctx):
     description="Добавить новость. Только для админов!",
     guild_ids=GUILD_IDS
 )
-async def new(ctx, *, content):
+async def new(ctx, content):
     await ctx.ack(eat=True)
     embed = discord.Embed(
         title="Новости!",
