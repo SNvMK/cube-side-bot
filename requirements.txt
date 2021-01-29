@@ -1,0 +1,4 @@
+aiosqlite
+aiohttp
+discord
+discord-py-slash-command
