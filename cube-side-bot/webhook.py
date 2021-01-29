@@ -16,4 +16,4 @@ class Webhook:
 
         async with aiohttp.ClientSession() as s:
             async with s.post(self.url, json=payload) as r:
-                return r.response
+                return r.status
