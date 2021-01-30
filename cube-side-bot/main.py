@@ -125,11 +125,11 @@ async def check_online(ctx, ip):
                 embed.color = discord.Color.dark_gray()
             else:
                 players = server["players"]
-
-                embed.add_field(
-                    name=f"Игроки (онлайн: {players['online']})",
-                    value=", ".join(players["list"])
-                )
+                if players["list"]:
+                    embed.add_field(
+                        name=f"Игроки (онлайн: {players['online']})",
+                        value=", ".join(players["list"])
+                    )
 
                 if isinstance(server["version"], list):
                     embed.description = f"Версия: {server['version']}"
