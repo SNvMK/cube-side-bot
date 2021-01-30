@@ -3,6 +3,7 @@ import aiosqlite
 import aiohttp
 
 import discord
+from discord.ext import commands
 import discord_slash
 import jishaku
 import json
@@ -12,9 +13,10 @@ from .webhook import Webhook
 
 GUILD_IDS = [804650085052055563]
 
-client = discord.ext.commands.AutoShardedBot(
+client = commands.AutoShardedBot(
     "/",
-    intents=discord.Intents.all()
+    intents=discord.Intents.all(),
+    owner_ids=[702818853306236989, 487845696100368384]
 )
 slash = discord_slash.SlashCommand(client, auto_register=True, auto_delete=True)
 
@@ -23,6 +25,12 @@ news = Webhook("https://discord.com/api/webhooks/804683405072662528/JKR9KeU-Fqb7
 faqs = Webhook("https://discord.com/api/webhooks/804673617300291594/yKFqI2Us3IAOYkmYl0baZwtuNqqt9jr26vE-gBA_RignkTYwJzaVGC5GVQ63DhH5oGvp")
 audit = Webhook("https://discord.com/api/webhooks/804671873249574942/J2lymeeIz7tfgqDihEIXANV1iw3U6w5iSoUh9U6N84CJSCffzNXI3ZxWnHWiVyWvz1gd")
 join_track = Webhook("https://discord.com/api/webhooks/804724673677623326/Hnby6pAeIAX4qXJ3UPApsOfOobcdEjDd9XsceD7xnxPN2miGZFa0axMCGlhC3TCX4r8n")
+
+async def get_token():
+    async with aiosqlite.connect("info.db") as db:
+        async with db.execute("SELECT * FROM info") as cur:
+            async for row in cur:
+                return row[0]
 
 @slash.slash(
     name="пинг",
@@ -140,6 +148,15 @@ async def check_online(ctx, ip):
     
     await ctx.send(embed=embed)
 
+@slash.slash(
+    name="перезапуск",
+    description="Перезапустить бота. Только для COCICKA и СНВМК",
+    guild_ids=GUILD_IDS
+)
+async def restart(ctx):
+    await client.logout()
+    await client.login(await get_token(), bot=True)
+
 @client.event
 async def on_member_join(member):
     await join_track.execute(username=member.name, avatar=str(member.avatar_url), content="Зашел на сервер")
@@ -149,8 +166,4 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N", emoji=client.get_emoji(804651860869775391)))
     client.load_extension("jishaku")
 
-async def get_token():
-    async with aiosqlite.connect("info.db") as db:
-        async with db.execute("SELECT * FROM info") as cur:
-            async for row in cur:
-                return row[0]
+
