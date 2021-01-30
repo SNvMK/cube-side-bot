@@ -115,7 +115,7 @@ async def check_online(ctx, ip):
     url = f"https://api.mcsrvstat.us/2/{ip}"
     async with aiohttp.ClientSession() as s:
         async with s.get(url) as r:
-            server = json.loads(r.read())
+            server = json.loads(await r.read())
 
             if not server["online"]:
                 embed.title = "Сервер не онлайн!"
