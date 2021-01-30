@@ -4,6 +4,7 @@ import aiohttp
 
 import discord
 import discord_slash
+import jishaku
 import json
 
 from .webhook import Webhook
@@ -11,7 +12,8 @@ from .webhook import Webhook
 
 GUILD_IDS = [804650085052055563]
 
-client = discord.AutoShardedClient(
+client = discord.ext.commands.AutoShardedBot(
+    "/",
     intents=discord.Intents.all()
 )
 slash = discord_slash.SlashCommand(client, auto_register=True, auto_delete=True)
@@ -116,6 +118,7 @@ async def check_online(ctx, ip):
     async with aiohttp.ClientSession() as s:
         async with s.get(url) as r:
             server = json.loads(await r.read())
+            print(server)
 
             if not server["online"]:
                 embed.title = "Сервер не онлайн!"
@@ -143,6 +146,7 @@ async def on_member_join(member):
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N", emoji=client.get_emoji(804651860869775391)))
+    client.load_extension("jishaku")
 
 async def get_token():
     async with aiosqlite.connect("info.db") as db:
