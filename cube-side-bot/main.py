@@ -1,8 +1,10 @@
 import asyncio
 import aiosqlite
+import aiohttp
 
 import discord
 import discord_slash
+import json
 
 from .webhook import Webhook
 
@@ -35,6 +37,8 @@ async def ping(ctx):
     guild_ids=GUILD_IDS
 )
 async def server(ctx):
+    await ctx.ack()
+
     embed = discord.Embed(
         title=f"Инфо о {ctx.guild.name}",
         color=ctx.author.color
@@ -62,9 +66,7 @@ async def server(ctx):
     embed.set_thumbnail(
         url=ctx.guild.icon_url
     )
-    
 
-    await ctx.ack()
     await ctx.send(embed=embed)
 
 @slash.slash(
@@ -102,6 +104,35 @@ async def faq(ctx, вопрос, ответ):
     else:
         await ctx.send("У вас нет роли для публикации ЧаВо!", hidden=True)
 
+@slash.slash(
+    name="майн_сервер",
+    description="Чекнуть онлайн на сервере",
+    guild_ids=GUILD_IDS
+)
+async def check_online(ctx, ip):
+    await ctx.ack()
+    embed = discord.Embed()
+    url = f"https://api.mcsrvstat.us/2/{ip}"
+    async with aiohttp.ClientSession() as s:
+        async with s.get(url) as r:
+            server = json.loads(r)
+
+            if not server["online"]:
+                embed.title = "Сервер не онлайн!"
+                embed.color = discord.Color.dark_gray()
+            else:
+                players = server["players"]
+
+                embed.add_field(
+                    name=f"Игроки (онлайн: {players['online']})",
+                    value=", ".join(players["list"])
+                )
+
+                if isinstance(server["version"], list):
+                    embed.description = f"Версия: {server['version']}"
+
+                else:
+                    embed.description = f"Версии: {', '.join(server['version'])}"
 
 @client.event
 async def on_member_join(member):
