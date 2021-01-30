@@ -132,7 +132,7 @@ async def check_online(ctx, ip):
                 embed.title = "Сервер не онлайн!"
                 embed.color = discord.Color.dark_gray()
             else:
-                embed.title = f"Сервер {server['ip']} онлайн!"
+                embed.title = f"Сервер {server['ip']}:{server['port']} онлайн!"
                 players = server["players"]
                 if players["list"]:
                     embed.add_field(
