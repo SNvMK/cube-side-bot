@@ -133,6 +133,8 @@ async def check_online(ctx, ip):
 
                 else:
                     embed.description = f"Версии: {', '.join(server['version'])}"
+    
+    await ctx.send(embed=embed)
 
 @client.event
 async def on_member_join(member):
