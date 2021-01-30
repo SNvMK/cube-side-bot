@@ -157,7 +157,7 @@ async def restart(ctx):
     await ctx.ack(eat=True)
     if ctx.author.id in client.owner_ids:
         await client.logout()
-        await client.login(await get_token(), bot=True)
+        await client.login(await get_token())
     else:
         await ctx.send("Вы не владеете ботом для перезапуска!", hidden=True)
 
