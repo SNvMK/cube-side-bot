@@ -148,19 +148,6 @@ async def check_online(ctx, ip):
     
     await ctx.send(embed=embed)
 
-@slash.slash(
-    name="перезапуск",
-    description="Перезапустить бота. Только для COCICKA и СНВМК",
-    guild_ids=GUILD_IDS
-)
-async def restart(ctx):
-    await ctx.ack(eat=True)
-    if ctx.author.id in client.owner_ids:
-        await client.logout()
-        await client.login(await get_token())
-    else:
-        await ctx.send("Вы не владеете ботом для перезапуска!", hidden=True)
-
 @client.event
 async def on_member_join(member):
     await join_track.execute(username=member.name, avatar=str(member.avatar_url), content="Зашел на сервер")
