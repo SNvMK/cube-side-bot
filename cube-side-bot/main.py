@@ -25,6 +25,7 @@ news = Webhook("https://discord.com/api/webhooks/804683405072662528/JKR9KeU-Fqb7
 faqs = Webhook("https://discord.com/api/webhooks/804673617300291594/yKFqI2Us3IAOYkmYl0baZwtuNqqt9jr26vE-gBA_RignkTYwJzaVGC5GVQ63DhH5oGvp")
 audit = Webhook("https://discord.com/api/webhooks/804671873249574942/J2lymeeIz7tfgqDihEIXANV1iw3U6w5iSoUh9U6N84CJSCffzNXI3ZxWnHWiVyWvz1gd")
 join_track = Webhook("https://discord.com/api/webhooks/804724673677623326/Hnby6pAeIAX4qXJ3UPApsOfOobcdEjDd9XsceD7xnxPN2miGZFa0axMCGlhC3TCX4r8n")
+leave_track = Webhook("https://discord.com/api/webhooks/805326685087596574/6FEku6lxhhpLNwulEXEZ8emByfgTVPJ5iyhReoH1ZBvgQxdiJKdVc9SLn_MCGCJ4VIjP")
 
 async def get_token():
     async with aiosqlite.connect("info.db") as db:
@@ -84,7 +85,7 @@ async def server(ctx):
     description="Добавить новость. Только для админов!",
     guild_ids=GUILD_IDS
 )
-async def new(ctx, содержание):
+async def new(ctx, содержание: str):
     await ctx.ack(eat=True)
     embed = {
         "title": "Новость!",
@@ -102,7 +103,7 @@ async def new(ctx, содержание):
     description="Новый ЧаВо(Часто задаваемый Вопрос)",
     guild_ids=GUILD_IDS
 )
-async def faq(ctx, вопрос, ответ):
+async def faq(ctx, вопрос: str, ответ: str):
     await ctx.ack(eat=True)
     embed = {
         "title": вопрос,
@@ -119,7 +120,7 @@ async def faq(ctx, вопрос, ответ):
     description="Чекнуть онлайн на сервере",
     guild_ids=GUILD_IDS
 )
-async def check_online(ctx, ip):
+async def check_online(ctx, ip: str):
     await ctx.ack()
     embed = discord.Embed()
     url = f"https://api.mcsrvstat.us/2/{ip}"
@@ -148,13 +149,45 @@ async def check_online(ctx, ip):
     
     await ctx.send(embed=embed)
 
+@slash.subcommand(
+    base="rcon", 
+    name="добавить", 
+    description="Добавить пользователя RCON"
+)
+async def rcon_add_user(ctx, id: int):
+    raise NotImplementedError("Добавление пользователей не реализовано")
+
+
+@client.event
+async def on_slash_command_error(ctx, ex):
+    embed = discord.Embed(
+        title=f"Произошла ошибка во время исполнения команды `/{ctx.name}`",
+        description=f"""
+{ex}
+        """
+    )
+
+    await ctx.send(embed=embed)
+
 @client.event
 async def on_member_join(member):
     await join_track.execute(username=member.name, avatar=str(member.avatar_url), content="Зашел на сервер")
 
 @client.event
+async def on_member_remove(member):
+    await leave_track.execute(username=member.name, avatar=str(member.avatar_url), content="*тихо ушёл*")
+
+@client.event
 async def on_ready():
+    async with aiosqlite.connect("users.db") as db:
+        injection = """
+        CREATE TABLE users(
+            id INTEGER
+        )
+        """
+        await db.execute()
+        await db.commit()
+
     await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N", emoji=client.get_emoji(804651860869775391)))
     client.load_extension("jishaku")
-
-
+    print("cube-side-bot started")
