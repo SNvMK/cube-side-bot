@@ -203,7 +203,14 @@ async def rcon_start(ctx):
             msg = await client.wait_for("message", check=check)
             if msg.content != "exit":
                 cmd = rcon.command(msg.content)
-                await ctx.send(cmd, hidden=True)
+                try:
+                    await ctx.send(f"""
+                ```
+                {cmd}
+                ```
+                """, hidden=True)
+                except:
+                    await ctx.send("*пустой вывод*", hidden=True)
 
             else:
                 rcon.disconnect()
@@ -212,6 +219,16 @@ async def rcon_start(ctx):
 
     else:
         await ctx.send("Вас не добавили в список RCON пользователей", hidden=True)
+
+@client.event
+async def on_slash_command(ctx: discord_slash.SlashContext):
+    embed = {
+        "title": f"Использована команда /`{ctx.name}`",
+        "description": f"ID: {ctx.command_id}, пользователь: {ctx.author.mention}",
+        "color": 0x7289DA
+    }
+
+    await audit.execute(embed=embed)
 
 @client.event
 async def on_slash_command_error(ctx, ex):
