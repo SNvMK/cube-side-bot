@@ -239,7 +239,7 @@ async def on_slash_command_error(ctx, ex):
         """
     )
 
-    await ctx.send(embed=embed)
+    await ctx.send(embeds=[embed])
 
 @client.event
 async def on_member_join(member):
