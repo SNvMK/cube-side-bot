@@ -207,6 +207,7 @@ async def rcon_start(ctx):
 
             else:
                 rcon.disconnect()
+                await ctx.send("Сессия закрыта")
                 break
 
     else:
