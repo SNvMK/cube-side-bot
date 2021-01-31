@@ -1,5 +1,5 @@
 import aiohttp
-
+import json
 
 class Webhook:
     def __init__(self, url):
@@ -25,4 +25,5 @@ class Webhook:
 
         async with aiohttp.ClientSession() as s:
             async with s.post(self.url, json=payload, headers=headers) as r:
-                print(r)
+                data = json.loads(r.text)
+                return data

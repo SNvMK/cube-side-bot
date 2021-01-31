@@ -223,7 +223,7 @@ async def rcon_start(ctx):
 @client.event
 async def on_slash_command(ctx: discord_slash.SlashContext):
     embed = {
-        "title": f"Использована команда /`{ctx.name}`",
+        "title": f"Использована команда `/{ctx.name}`",
         "description": f"ID: {ctx.command_id}, пользователь: {ctx.author.mention}",
         "color": 0x7289DA
     }
