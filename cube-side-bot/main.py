@@ -159,7 +159,7 @@ async def check_online(ctx, ip: str):
     description="Спросите у волшебного шара что угодно!",
     guild_ids=GUILD_IDS
 )
-async def eight_ball(ctx, q):
+async def eight_ball(ctx, вопрос):
     answers = [
         "Бесспорно",
         "Предрешено",
@@ -185,9 +185,13 @@ async def eight_ball(ctx, q):
     answer = random.choice(answers)
 
     embed = discord.Embed(
-        title=f"«{q}»",
-        description=answer,
+        title=f"«{вопрос}»",
+        description=f"**{answer}**",
         color=discord.Color.blurple()
+    )
+    embed.set_author(
+        name=ctx.author.display_name,
+        icon_url=ctx.author.avatar_url
     )
 
     await ctx.send(embed=embed)
