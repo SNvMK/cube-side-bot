@@ -160,6 +160,8 @@ async def check_online(ctx, ip: str):
     guild_ids=GUILD_IDS
 )
 async def eight_ball(ctx, вопрос):
+    await ctx.ack()
+
     answers = [
         "Бесспорно",
         "Предрешено",
