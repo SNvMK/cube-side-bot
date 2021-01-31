@@ -158,7 +158,7 @@ async def check_online(ctx, ip: str):
 )
 async def rcon_add_user(ctx, id: int):
     await ctx.ack(eat=True)
-    if ctx.author.ids in client.owner_ids:
+    if ctx.author.id in client.owner_ids:
         try:
             user = await client.fetch_user(id)
             users.append(id)
@@ -175,7 +175,7 @@ async def rcon_add_user(ctx, id: int):
 )
 async def rcon_remove_user(ctx, id: int):
     await ctx.ack(eat=True)
-    if ctx.author.ids in client.owner_ids:
+    if ctx.author.id in client.owner_ids:
         try:
             user = await client.fetch_user(id)
             users.remove(id)
