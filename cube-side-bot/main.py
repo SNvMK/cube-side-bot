@@ -10,6 +10,7 @@ import jishaku
 
 import json
 import random
+import re
 
 from .webhook import Webhook
 
@@ -287,6 +288,18 @@ async def on_slash_command_error(ctx, ex):
     )
 
     await ctx.send(embed=embed)
+
+@client.event
+async def on_message(message):
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+    url = re.findall(regex, message.content)
+    urls = [x[0] for x in url]
+    if urls:
+        if not message.author.guild_permissions.administrator:
+            await message.delete()
+            await message.channel.send(f"Сообщение от {message.author.mention} было удалено из-за содержания ссылки.")
+        else:
+            pass
 
 @client.event
 async def on_member_join(member):
