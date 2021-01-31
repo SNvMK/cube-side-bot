@@ -228,7 +228,7 @@ async def on_slash_command(ctx: discord_slash.SlashContext):
         "color": 0x7289DA
     }
 
-    await audit.execute(embed=embed)
+    await audit.execute(embeds=[embed])
 
 @client.event
 async def on_slash_command_error(ctx, ex):
@@ -239,7 +239,7 @@ async def on_slash_command_error(ctx, ex):
         """
     )
 
-    await ctx.send(embeds=[embed])
+    await ctx.send(embed=embed)
 
 @client.event
 async def on_member_join(member):
