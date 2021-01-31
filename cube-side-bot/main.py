@@ -127,7 +127,6 @@ async def check_online(ctx, ip: str):
     async with aiohttp.ClientSession() as s:
         async with s.get(url) as r:
             server = json.loads(await r.read())
-            print(server)
 
             if not server["online"]:
                 embed.title = "Сервер не онлайн!"
@@ -179,15 +178,6 @@ async def on_member_remove(member):
 
 @client.event
 async def on_ready():
-    async with aiosqlite.connect("users.db") as db:
-        injection = """
-        CREATE TABLE users(
-            id INTEGER
-        )
-        """
-        await db.execute(injection)
-        await db.commit()
-
     await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N", emoji=client.get_emoji(804651860869775391)))
     client.load_extension("jishaku")
     print("cube-side-bot started")
