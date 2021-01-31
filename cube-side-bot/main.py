@@ -185,7 +185,7 @@ async def on_ready():
             id INTEGER
         )
         """
-        await db.execute()
+        await db.execute(injection)
         await db.commit()
 
     await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N", emoji=client.get_emoji(804651860869775391)))
