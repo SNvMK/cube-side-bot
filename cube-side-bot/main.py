@@ -7,7 +7,9 @@ import discord
 from discord.ext import commands
 import discord_slash
 import jishaku
+
 import json
+import random
 
 from .webhook import Webhook
 
@@ -136,6 +138,7 @@ async def check_online(ctx, ip: str):
                 embed.color = discord.Color.dark_gray()
             else:
                 embed.title = f"Сервер {server['ip']}:{server['port']} онлайн!"
+                embed.color = discord.Color.blurple()
                 players = server["players"]
                 if players["list"]:
                     embed.add_field(
@@ -149,6 +152,44 @@ async def check_online(ctx, ip: str):
                 else:
                     embed.description = f"Версии: {', '.join(server['version'])}"
     
+    await ctx.send(embed=embed)
+
+@slash.slash(
+    name="шар",
+    description="Спросите у волшебного шара что угодно!",
+    guild_ids=GUILD_IDS
+)
+async def eight_ball(ctx, q):
+    answers = [
+        "Бесспорно",
+        "Предрешено",
+        "Никаких сомнений",
+        "Определённо да",
+        "Можешь быть уверен в этом",
+        "Мне кажется — «да»",
+        "Вероятнее всего",
+        "Хорошие перспективы",
+        "Знаки говорят — «да»",
+        "Да",
+        "Пока не ясно, попробуй снова",
+        "Спроси позже",
+        "Лучше не рассказывать",
+        "Сейчас нельзя предсказать",
+        "Сконцентрируйся и спроси опять",
+        "Даже не думай",
+        "Мой ответ — «нет»",
+        "По моим данным — «нет»",
+        "Перспективы не очень хорошие",
+        "Весьма сомнительно"
+    ]
+    answer = random.choice(answers)
+
+    embed = discord.Embed(
+        title=f"«{q}»",
+        description=answer,
+        color=discord.Color.blurple()
+    )
+
     await ctx.send(embed=embed)
 
 @slash.slash(
