@@ -141,7 +141,7 @@ async def check_online(ctx, ip: str):
                 embed.title = f"Сервер {server['ip']}:{server['port']} онлайн!"
                 embed.color = discord.Color.blurple()
                 players = server["players"]
-                if players["list"]:
+                if "list" in players:
                     embed.add_field(
                         name=f"Сейчас играют",
                         value=", ".join(players["list"])
@@ -283,7 +283,9 @@ async def on_slash_command_error(ctx, ex):
     embed = discord.Embed(
         title=f"Произошла ошибка во время исполнения команды `/{ctx.name}`",
         description=f"""
+```py
 {ex}
+```
         """
     )
 
