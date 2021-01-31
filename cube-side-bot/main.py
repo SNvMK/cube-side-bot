@@ -1,6 +1,7 @@
 import asyncio
 import aiosqlite
 import aiohttp
+import mcrcon
 
 import discord
 from discord.ext import commands
@@ -16,9 +17,11 @@ GUILD_IDS = [804650085052055563]
 client = commands.AutoShardedBot(
     "/",
     intents=discord.Intents.all(),
-    owner_ids=[702818853306236989, 487845696100368384]
+    owner_ids=[702818853306236989, 487845696100368384, 784648210832162826]
 )
 slash = discord_slash.SlashCommand(client, auto_register=True, auto_delete=True)
+
+users = []
 
 rules = Webhook("https://discord.com/api/webhooks/804673807251537962/o029o_6jGB2pUct2tC-crJsz4OLn1Vw_5heAJ1juaFD2q6nMBODN1OqpDyBLxjSXzV2o")
 news = Webhook("https://discord.com/api/webhooks/804683405072662528/JKR9KeU-Fqb7JRJkOcLjyJtlNQ48sRhbYu9dCyXAA7Og08Z_93zNYk0P5nDMjRYAXVwS")
@@ -154,8 +157,59 @@ async def check_online(ctx, ip: str):
     description="Добавить пользователя RCON"
 )
 async def rcon_add_user(ctx, id: int):
-    raise NotImplementedError("Добавление пользователей не реализовано")
+    await ctx.ack(eat=True)
+    if ctx.author.ids in client.owner_ids:
+        try:
+            user = await client.fetch_user(id)
+            users.append(id)
+            await ctx.send(f"**{user.display_name}** добавлен в список RCON пользователей", hidden=True)
+        except:
+            await ctx.send("Не удалось добавить пользователя", hidden=True)
+    else:
+        await ctx.send("У вас нет прав на добавление пользователей RCON", hidden=True)
 
+@slash.subcommand(
+    base="rcon",
+    name="удалить",
+    description="Удалить пользователя RCON"
+)
+async def rcon_remove_user(ctx, id: int):
+    await ctx.ack(eat=True)
+    if ctx.author.ids in client.owner_ids:
+        try:
+            user = await client.fetch_user(id)
+            users.remove(id)
+            await ctx.send(f"**{user.display_name}** удалён из списка RCON пользователей", hidden=True)
+        except:
+            await ctx.send("Не удалось удалить пользователя", hidden=True)
+    else:
+        await ctx.send("У вас нет прав на удаление пользователей RCON", hidden=True)
+
+@slash.subcommand(
+    base="rcon",
+    name="старт",
+    description="Запустить REPL RCON сервера"
+)
+async def rcon_start(ctx):
+    await ctx.ack(eat=True)
+    def check(m):
+        return m.author.id == ctx.author.id
+
+    if ctx.author.id in users or ctx.author.id in client.owner_ids:
+        rcon = mcrcon.MCRcon("", "", port=int)
+        rcon.connect()
+        while True:
+            msg = await client.wait_for("message", check=check)
+            if msg.content != "exit":
+                cmd = rcon.command(msg.content)
+                await ctx.send(cmd, hidden=True)
+
+            else:
+                rcon.destroy()
+                break
+
+    else:
+        await ctx.send("Вас не добавили в список RCON пользователей", hidden=True)
 
 @client.event
 async def on_slash_command_error(ctx, ex):
