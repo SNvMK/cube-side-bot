@@ -153,7 +153,8 @@ async def check_online(ctx, ip: str):
 
 @slash.slash(
     name="добавить", 
-    description="Добавить пользователя RCON"
+    description="Добавить пользователя RCON",
+    guild_ids=GUILD_IDS
 )
 async def rcon_add_user(ctx, id: int):
     await ctx.ack(eat=True)
@@ -169,7 +170,8 @@ async def rcon_add_user(ctx, id: int):
 
 @slash.slash(
     name="удалить",
-    description="Удалить пользователя RCON"
+    description="Удалить пользователя RCON",
+    guild_ids=GUILD_IDS
 )
 async def rcon_remove_user(ctx, id: int):
     await ctx.ack(eat=True)
@@ -185,7 +187,8 @@ async def rcon_remove_user(ctx, id: int):
 
 @slash.slash(
     name="rcon",
-    description="Запустить REPL RCON сервера"
+    description="Запустить REPL RCON сервера",
+    guild_ids=GUILD_IDS
 )
 async def rcon_start(ctx):
     await ctx.ack(eat=True)
