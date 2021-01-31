@@ -151,8 +151,7 @@ async def check_online(ctx, ip: str):
     
     await ctx.send(embed=embed)
 
-@slash.subcommand(
-    base="rcon", 
+@slash.slash(
     name="добавить", 
     description="Добавить пользователя RCON"
 )
@@ -168,8 +167,7 @@ async def rcon_add_user(ctx, id: int):
     else:
         await ctx.send("У вас нет прав на добавление пользователей RCON", hidden=True)
 
-@slash.subcommand(
-    base="rcon",
+@slash.slash(
     name="удалить",
     description="Удалить пользователя RCON"
 )
@@ -185,9 +183,8 @@ async def rcon_remove_user(ctx, id: int):
     else:
         await ctx.send("У вас нет прав на удаление пользователей RCON", hidden=True)
 
-@slash.subcommand(
-    base="rcon",
-    name="старт",
+@slash.slash(
+    name="rcon",
     description="Запустить REPL RCON сервера"
 )
 async def rcon_start(ctx):
