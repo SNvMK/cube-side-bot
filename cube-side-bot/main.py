@@ -313,6 +313,6 @@ async def on_member_remove(member):
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N", emoji=client.get_emoji(804651860869775391)))
+    await client.change_presence(activity=discord.Game(name=f"CubeSide 1.12.2 | play.cubeside.ru | https://discord.gg/eknpGjgu8N"))
     client.load_extension("jishaku")
     print("cube-side-bot started")
