@@ -33,12 +33,6 @@ audit = Webhook("https://discord.com/api/webhooks/804671873249574942/J2lymeeIz7t
 join_track = Webhook("https://discord.com/api/webhooks/804724673677623326/Hnby6pAeIAX4qXJ3UPApsOfOobcdEjDd9XsceD7xnxPN2miGZFa0axMCGlhC3TCX4r8n")
 leave_track = Webhook("https://discord.com/api/webhooks/805326685087596574/6FEku6lxhhpLNwulEXEZ8emByfgTVPJ5iyhReoH1ZBvgQxdiJKdVc9SLn_MCGCJ4VIjP")
 
-async def get_token():
-    async with aiosqlite.connect("info.db") as db:
-        async with db.execute("SELECT * FROM info") as cur:
-            async for row in cur:
-                return row[0]
-
 @slash.slash(
     name="пинг",
     description="Понг!",

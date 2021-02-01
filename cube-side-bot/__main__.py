@@ -1,8 +1,8 @@
 import asyncio
+import os
 
 from .main import client
-from .main import get_token
 
 
-token = asyncio.run(get_token())
+token = os.getenv("TOKEN")
 client.run(token)
