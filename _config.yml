@@ -1,16 +1,13 @@
 remote_theme: jameshamann/jekyll-material-theme
 
-url: https://snvmk.tk
-baseurl: /cube-side-bot
-
 title: CubeSide
 description: Крутой Minecraft-сервер и Discord-сервер с ботом!
 author: SNVMK и COCICKA
 name: SNVMK и COCICKA
 email: sidzahroman@gmail.com
 
-parallax_image_one: /assets/background-header.jpg
-parallax_image_two: /assets/background-header.jpg
+parallax_image_one: /assets/images/background-header.jpg
+parallax_image_two: /assets/images/background-header.jpg
 
 display_footer: inital
 
