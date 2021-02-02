@@ -238,7 +238,7 @@ async def rcon_start(ctx):
         return m.author.id == ctx.author.id
 
     if ctx.author.id in users or ctx.author.id in client.owner_ids:
-        rcon = mcrcon.MCRcon("95.216.62.180", "41097498AA47969E1B", port=28582)
+        rcon = mcrcon.MCRcon("95.216.62.180", "50BDA0647A0149507B", port=28582)
         rcon.connect()
         await ctx.send("Сессия RCON запущена! Вводите команды, для выхода `exit`", hidden=True)
         while True:
