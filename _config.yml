@@ -1,7 +1,6 @@
 remote_theme: jameshamann/jekyll-material-theme
 
 url: "https://snvmk.tk/"
-baseurl: "cube-side-bot"
 
 title: CubeSide
 description: Крутой Minecraft-сервер и Discord-сервер с ботом!
