@@ -6,8 +6,8 @@ author: SNVMK и COCICKA
 name: SNVMK и COCICKA
 email: sidzahroman@gmail.com
 
-parallax_image_one: /assets/images/background-header.jpg
-parallax_image_two: /assets/images/background-header.jpg
+parallax_image_one: /assets/images/background.jpg
+parallax_image_two: /assets/images/background.jpg
 
 display_footer: inital
 
