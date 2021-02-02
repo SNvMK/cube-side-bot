@@ -242,21 +242,22 @@ async def rcon_start(ctx):
         rcon.connect()
         await ctx.send("Сессия RCON запущена! Вводите команды, для выхода `exit`", hidden=True)
         while True:
-            msg = await client.wait_for("message", check=check)
+            try:
+                msg = await client.wait_for("message", check=check, timeout=60.0)
+            except asyncio.TimeoutError:
+                await ctx.send("Сессия закрыта", hidden=True)
+                break
             if msg.content != "exit":
                 cmd = rcon.command(msg.content)
-                try:
-                    await ctx.send(f"""
+                await ctx.send(f"""
                 ```
                 {cmd}
                 ```
                 """, hidden=True)
-                except:
-                    await ctx.send("*пустой вывод*", hidden=True)
 
             else:
                 rcon.disconnect()
-                await ctx.send("Сессия закрыта")
+                await ctx.send("Сессия закрыта", hidden=True)
                 break
 
     else:
