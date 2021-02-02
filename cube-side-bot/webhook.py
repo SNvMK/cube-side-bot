@@ -25,5 +25,5 @@ class Webhook:
 
         async with aiohttp.ClientSession() as s:
             async with s.post(self.url, json=payload, headers=headers) as r:
-                data = json.loads(r.text())
+                data = json.loads(await r.text())
                 return data
