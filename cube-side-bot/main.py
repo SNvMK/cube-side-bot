@@ -242,7 +242,7 @@ async def rcon_start(ctx):
         rcon.connect()
         await ctx.send("Сессия RCON запущена! Вводите команды, для выхода `exit`", hidden=True)
         while True:
-            msg = await client.wait_for("message", check=check)
+            msg = await client.wait_for("message", check=check, timeout=60.0)
             if msg.content != "exit":
                 cmd = rcon.command(msg.content)
                 try:
