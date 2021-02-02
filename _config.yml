@@ -9,8 +9,8 @@ author: SNVMK и COCICKA
 name: SNVMK и COCICKA
 email: sidzahroman@gmail.com
 
-parallax_image_one: /assets/background-header.jpg
-parallax_image_two: /assets/background-header.jpg
+parallax_image_one: cube-side-bot/assets/background-header.jpg
+parallax_image_two: cube-side-bot/assets/background-header.jpg
 
 display_footer: inital
 
