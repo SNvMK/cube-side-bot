@@ -13,13 +13,19 @@ display_footer: inital
 
 portfolio_heading: Проекты
 portfolio_type: carousel
+project_button: Ссылка
 
 project_one: "Сервер CubeSide"
 project_one_description: Крутой Minecraft сервер
 project_one_url: https://cubeside.online
 project_one_icon: videogame_asset
 
-project_button: Ссылка
+project_two: "Бот CubeSide"
+project_two_description: Бот для нашего Discord-сервера
+project_two_url: https://github.com/SNVMK/cube-side-bot
+project_two_icon: android
+
 github: https://github.com/SNVMK
+discord: https://discord.gg/n3xr8VbGw8
 
 permalink: /:title
