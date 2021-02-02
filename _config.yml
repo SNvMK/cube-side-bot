@@ -2,4 +2,25 @@ remote_theme: jameshamann/jekyll-material-theme
 
 title: CubeSide - сервер и бот
 description: Крутой Minecraft-сервер и Discord-сервер с ботом!
-author: SNVMK
+author: SNVMK и COCICKA
+name: SNVMK и COCICKA
+email: sidzahroman@gmail.com
+
+display_footer: inital
+
+portfolio_heading: Проекты
+portfolio_type: carousel
+
+project_one: "Сервер CubeSide"
+project_one_description: Крутой Minecraft сервер
+project_one_url: https://cubeside.online
+project_one_icon: videogame_asset
+
+project_button: Исходники бота
+github: https://github.com/jameshamann/jekyll-material-theme
+
+permalink: /:title
+plugins:
+  - jekyll-feed
+  - jekyll-assets
+  - jekyll-minifier
