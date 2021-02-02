@@ -1,9 +1,9 @@
 remote_theme: jameshamann/jekyll-material-theme
 
-url: "https://snvmk.tk"
-baseurl: "/cube-side-bot"
+url: "https://snvmk.tk/"
+baseurl: "cube-side-bot"
 
-title: CubeSide - сервер и бот
+title: CubeSide
 description: Крутой Minecraft-сервер и Discord-сервер с ботом!
 author: SNVMK и COCICKA
 name: SNVMK и COCICKA
@@ -22,18 +22,7 @@ project_one_description: Крутой Minecraft сервер
 project_one_url: https://cubeside.online
 project_one_icon: videogame_asset
 
-skills:
-  - name: github
-  - name: git
-  - name: python
-  - name: html5
-  - name: css3
-
-project_button: Исходники бота
-github: https://github.com/jameshamann/jekyll-material-theme
+project_button: Ссылка
+github: https://github.com/SNVMK
 
 permalink: /:title
-plugins:
-  - jekyll-feed
-  - jekyll-assets
-  - jekyll-minifier
