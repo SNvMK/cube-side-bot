@@ -6,6 +6,8 @@ author: SNVMK и COCICKA
 name: SNVMK и COCICKA
 email: sidzahroman@gmail.com
 
+parallax_image_one: /assets/background-header.jpg
+
 display_footer: inital
 
 portfolio_heading: Проекты
@@ -15,6 +17,13 @@ project_one: "Сервер CubeSide"
 project_one_description: Крутой Minecraft сервер
 project_one_url: https://cubeside.online
 project_one_icon: videogame_asset
+
+skills:
+  - name: github
+  - name: git
+  - name: python
+  - name: html5
+  - name: css3
 
 project_button: Исходники бота
 github: https://github.com/jameshamann/jekyll-material-theme
