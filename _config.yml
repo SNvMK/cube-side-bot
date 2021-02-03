@@ -6,8 +6,16 @@ author: SNVMK и COCICKA
 name: SNVMK и COCICKA
 email: sidzahroman@gmail.com
 
+tagline: Крутые сервера и люди!
+logo: /assets/images/logo.png
+social:
+  name: SNVMK & COCICKA
+  links:
+    - https://github.com/SNVMK
+
 parallax_image_one: /assets/images/background.jpg
 parallax_image_two: /assets/images/background.jpg
+parallax_image_three: /assets/images/background.jpg
 
 display_footer: inital
 
@@ -36,3 +44,6 @@ defaults:
     values:
       permalink: /:year/:month/:day/:title
       layout: post
+
+plugins:
+  - "jekyll-seo-tag"
