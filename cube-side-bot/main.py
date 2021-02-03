@@ -249,6 +249,7 @@ async def rcon_start(ctx):
                 await ctx.send("Сессия закрыта", hidden=True)
                 break
             if msg.content != "exit":
+                await msg.delete()
                 cmd = rcon.command(msg.content)
                 await ctx.send(f"""
                 ```
@@ -257,6 +258,7 @@ async def rcon_start(ctx):
                 """, hidden=True)
 
             else:
+                await msg.delete()
                 rcon.disconnect()
                 await ctx.send("Сессия закрыта", hidden=True)
                 break
