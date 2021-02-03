@@ -28,4 +28,11 @@ project_two_icon: android
 github: https://github.com/SNVMK
 discord: https://discord.gg/n3xr8VbGw8
 
-permalink: /:title
+defaults:
+  - 
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: /:year/:month/:day/:title
+      layout: post
