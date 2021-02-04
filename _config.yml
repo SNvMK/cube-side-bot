@@ -47,3 +47,4 @@ defaults:
 
 plugins:
   - "jekyll-seo-tag"
+  - "jekyll-remote-theme"
