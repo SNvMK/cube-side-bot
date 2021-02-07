@@ -45,6 +45,10 @@ defaults:
       permalink: /:year/:month/:day/:title
       layout: post
 
+include:
+ - _pages
+ - .htaccess
+
 plugins:
   - "jekyll-seo-tag"
   - "jekyll-remote-theme"
