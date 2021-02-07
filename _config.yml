@@ -25,7 +25,7 @@ project_button: Ссылка
 
 project_one: "Сервер CubeSide"
 project_one_description: Крутой Minecraft сервер
-project_one_url: https://cubeside.online
+project_one_url: https://cubeside.online/server
 project_one_icon: videogame_asset
 
 project_two: "Бот CubeSide"
