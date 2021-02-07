@@ -300,6 +300,7 @@ async def on_message(message):
             await message.channel.send(f"Сообщение от {message.author.mention} было удалено из-за содержания ссылки.")
         else:
             pass
+    await client.process_commands(message)
 
 @client.event
 async def on_member_join(member):
