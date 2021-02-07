@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Сервер CubeSide
+permalink: /server/
 ---
 # Инфо о сервере CubeSide
 
