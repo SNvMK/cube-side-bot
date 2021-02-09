@@ -5,4 +5,4 @@ permalink: /donate
 
 <script src="https://api.trademc.org/trademcapi.js"></script>
 <div id="trademc-buyform"></div>
-<script>TrademcAPI.GetBuyForm({"Shop":"143633","Title":"Донат!","Nickname":"Никнейм","Items":"Привелегия","Coupon":"Промокод, если есть","Button":"Купить!","Success_URL":"http://cubeside.online/donate/succes","Pending_URL":"http://cubeside.online/donate/wait","Fail_URL":"http://cubeside.online/donate/fail","PastPlaceID":"trademc-buyform"});</script>
+<script>TrademcAPI.GetBuyForm({"Shop":"1","Title":"Купить донат","Nickname":"Введите ваш никнейм","Item":"Выберите товар","Coupon":"Введите купон, если есть","Button":"Продолжить","Success_URL":"https://trademc.org","Pending_URL":"https://trademc.org","Fail_URL":"https://trademc.org","PastPlaceID":"trademc-buyform"});</script>
