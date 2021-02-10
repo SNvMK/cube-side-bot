@@ -289,6 +289,26 @@ async def on_slash_command_error(ctx, ex):
 
     await ctx.send(embed=embed)
 
+
+@slash.slash()
+async def жалоба(ctx, правило, нарушитель, комментарий):
+    """
+    Отправить жалобу на пользователя
+    """
+    await ctx.ack(eat=True)
+
+    embed = discord.Embed(
+        title="Подана жалоба!",
+        description=f"{нарушитель.mention} наришил правило {правило} со следующим доказательством:\n{комментарий}",
+        color=discord.Color.blurple()
+    )
+    embed.set_author(
+        name=str(ctx.author),
+        icon_url=ctx.author.avatar_url
+    )
+
+    await ctx.send(embed=embed)
+
 @client.event
 async def on_message(message):
     regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
