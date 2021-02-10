@@ -299,7 +299,7 @@ async def жалоба(ctx, правило, нарушитель: discord.abc.Us
 
     embed = discord.Embed(
         title="Подана жалоба!",
-        description=f"{нарушитель.mention} наришил правило {правило} со следующим доказательством:\n{комментарий}",
+        description=f"{нарушитель.mention} нарушил правило {правило} со следующим доказательством:\n**{комментарий}**",
         color=discord.Color.blurple()
     )
     embed.set_author(
@@ -307,7 +307,7 @@ async def жалоба(ctx, правило, нарушитель: discord.abc.Us
         icon_url=ctx.author.avatar_url
     )
 
-    await ctx.send(embed=embed)
+    await client.get_channel(804670060424724530).send(embed=embed)
 
 @client.event
 async def on_message(message):
