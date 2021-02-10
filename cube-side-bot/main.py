@@ -291,7 +291,7 @@ async def on_slash_command_error(ctx, ex):
 
 
 @slash.slash()
-async def жалоба(ctx, правило, нарушитель, комментарий):
+async def жалоба(ctx, правило, нарушитель: discord.abc.User, комментарий):
     """
     Отправить жалобу на пользователя
     """
