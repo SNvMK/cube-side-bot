@@ -290,7 +290,7 @@ async def on_slash_command_error(ctx, ex):
     await ctx.send(embed=embed)
 
 
-@slash.slash()
+@slash.slash(guild_ids=GUILD_IDS)
 async def жалоба(ctx, правило, нарушитель: discord.abc.User, комментарий):
     """
     Отправить жалобу на пользователя
