@@ -1,0 +1,24 @@
+{
+  "name": "cube-side-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SNvMK/cube-side-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SNvMK/cube-side-bot/issues"
+  },
+  "homepage": "https://github.com/SNvMK/cube-side-bot#readme",
+  "dependencies": {
+    "dbd.js": "^2.1.0",
+    "node-fetch": "^2.6.1"
+  }
+}

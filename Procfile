@@ -1,1 +1,1 @@
-worker: python -m cube-side-bot
+worker: npm start
