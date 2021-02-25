@@ -11,11 +11,7 @@ bot.status({
     url: "https://vk.com/csides"
 })
 
-bot.command({
-    name: "add_eval",
-    code: `$createSlashCommand[$guildID;запуск;Запуск кода(только для SNVMK);код:Код для запуска:true:3]`
-})
-bot.onMessage()
+
 bot.interactionCommand({
     name: "пинг",
     code: `$interactionReply[{title:🏓Понг!}{description:Пинг сервера $ping мс}{color:RED}]`
@@ -28,7 +24,18 @@ bot.interactionCommand({
 })
 bot.interactionCommand({
     name: "запуск",
-    code: `$interactionReply[{title:Вывод}{description:$eval[$message;yes]}{color:RED}]`
+    code: `
+        $interactionReply[{title:Вывод}{description:$eval[$message;yes]}{color:RED}]
+        $onlyForIDs[804654915183312916;{title:Вы не владелец бота!}{color:RED}]
+    `
+})
+bot.interactionCommand({
+    name: "новость",
+    code: `
+        $channelSendMessage[804673463469604865;{title:Новость!}{description:$message}{color:#7289DA}]
+        $messagePublish[804673463469604865;$botLastMessageID]
+        $onlyPerms[administrator;$dm {title:Вы не имеете прав администратора!}{color:RED}]
+    `
 })
 
 bot.onInteractionCreate()
