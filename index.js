@@ -34,7 +34,7 @@ bot.interactionCommand({
     code: `
         $channelSendMessage[804673463469604865;{title:Новость!}{description:$message}{color:#7289DA}]
         $messagePublish[804673463469604865;$botLastMessageID]
-        $onlyPerms[administrator;$dm {title:Вы не имеете прав администратора!}{color:RED}]
+        $onlyPerms[admin;$dm {title:Вы не имеете прав администратора!}{color:RED}]
     `
 })
 
