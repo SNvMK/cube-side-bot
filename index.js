@@ -15,7 +15,7 @@ bot.command({
     name: "add_eval",
     code: `$createSlashCommand[$guildID;запуск;Запуск кода(только для SNVMK);код:Код для запуска:true:3]`
 })
-
+bot.onMessage()
 bot.interactionCommand({
     name: "пинг",
     code: `$interactionReply[{title:🏓Понг!}{description:Пинг сервера $ping мс}{color:RED}]`
