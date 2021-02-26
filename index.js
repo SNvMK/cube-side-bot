@@ -78,12 +78,12 @@ bot.interactionCommand({
             const res = fetch("https://api.mcsrvstat.us/2/$message");
             const json = res.json()
             const embed = {}
-            if (json["online"] == true) {
-                embed.title = 'Сервер' + json['ip'] + ' онлайн!'
-                embed.description = 'Играют ' + json['players']['list'].join(', ')
+            if (json["online"\\] == true) {
+                embed.title = 'Сервер' + json['ip'\\] + ' онлайн!'
+                embed.description = 'Играют ' + json['players'\\]['list'\\].join(', ')
                 embed.color = 0x7289da
             } else {
-                embed.title = 'Сервер' + json['ip'] + ' оффлайн!'
+                embed.title = 'Сервер' + json['ip'\\] + ' оффлайн!'
                 embed.color = 0x607d8b
             }
             d.message.channel.send({ embed: embed })
