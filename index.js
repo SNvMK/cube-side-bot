@@ -32,11 +32,11 @@ bot.interactionCommand({
 bot.interactionCommand({
     name: "новость",
     code: `
+        $messagePublish[804673463469604865;$botLastMessageID]
         $useChannel[804673463469604865]
         $title[Новость]
         $description[$message]
         $color[#7289DA]
-        $messagePublish[804673463469604865;$botLastMessageID]
         $onlyPerms[admin;$dm Вы не имеете прав админа!]
     `
 });
