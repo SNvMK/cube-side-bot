@@ -26,7 +26,7 @@ bot.interactionCommand({
     name: "запуск",
     code: `
         $interactionReply[{title:Вывод}{description:$eval[$message;no]}{color:RED}]
-        $onlyForIDs[487845696100368384;{title:Вы не владелец бота!}{color:RED}]
+        $onlyForIDs[487845696100368384;{title:Вы не владелец бота!}{color:RED}{author:$username:$authorAvatar}]
     `
 });
 bot.interactionCommand({
@@ -50,22 +50,50 @@ bot.interactionCommand({
         $useChannel[804670060424724530]
     `
 });
-
 bot.interactionCommand({
     name: "rcon",
-    code: `$djsEval[
-        const Rcon = require("modern-rcon");
-        const rcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
-        rcon.connect()
-        .then(() => {
-            return rcon.send('$message')
-        })
-        .then(res => {
-            d.message.channel.send(res)
-        })
-        .then(() => {
-            return rcon.disconnect()
-        });]`
+    code: `
+        $djsEval[
+            const Rcon = require("modern-rcon");
+            const rcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
+            rcon.connect()
+                .then(() => {
+                    return rcon.send('$message')
+                })
+                .then(res => {
+                    const embed = {
+                        title: "RCON запрос"
+                        description: res,
+                        color: 0x7289DA
+                    };
+                    d.message.channel.send({ embed: embed })
+                })
+                .then(() => {
+                    return rcon.disconnect()
+                });
+        ]
+        $onlyForRoles[814826308780687381;{title:У вас нет доступа к консоли!}{color:RED}{author:$username:$authotAvatar}]
+    `
+});
+bot.interactionCommand({
+    name: "майн_сервер",
+    code: `
+        $djsEval[
+            const fetch = require("node-fetch");
+            const res = fetch("https://api.mcsrvstat.us/2/$message");
+            const json = res.json()
+            const embed = {}
+            if (json["online"] == true) {
+                embed.title = \`Сервер ${json['ip']} онлайн!\`
+                embed.description = \`Играют ${json['players']['list'].join(', ')}\`
+                embed.color = 0x7289da
+            } else {
+                embed.title = \`Сервер ${json['ip']} оффлайн!\`
+                embed.color = 0x607d8b
+            }
+            d.message.channel.send({ embed: embed })
+        ]
+    `
 })
 
 bot.onInteractionCreate()
