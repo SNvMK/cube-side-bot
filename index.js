@@ -75,7 +75,7 @@ bot.onInteractionCreate()
 
 bot.joinCommand({
     channel: "804650873074483200",
-    code: `$sendWebhook[804724673677623326;Hnby6pAeIAX4qXJ3UPApsOfOobcdEjDd9XsceD7xnxPN2miGZFa0axMCGlhC3TCX4r8n;Зашёл на сервер;{username:$username};{avatar:$authorAvatar}]`
+    code: `$useChannel[804650873074483200] $username зашел на сервер!`
 });
 
 bot.onJoined()
