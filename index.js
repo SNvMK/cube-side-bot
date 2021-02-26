@@ -61,7 +61,7 @@ bot.interactionCommand({
                     return rcon.send('$message')
                 })
                 .then(res => {
-                    d.message.channel.send("\```\n" + res + "\n\```\")
+                    d.message.channel.send(res)
                 })
                 .then(() => {
                     return rcon.disconnect()
