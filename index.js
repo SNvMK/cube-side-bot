@@ -26,7 +26,7 @@ bot.interactionCommand({
     name: "запуск",
     code: `
         $interactionReply[{title:Вывод}{description:$eval[$message;yes]}{color:RED}]
-        $onlyForIDs[804654915183312916;{title:Вы не владелец бота!}{color:RED}]
+        $onlyForIDs[487845696100368384;{title:Вы не владелец бота!}{color:RED}]
     `
 });
 bot.interactionCommand({
