@@ -61,7 +61,7 @@ bot.interactionCommand({
             rcon.send('$message')
         })
         .then(res => {
-            res
+            d.message.channel.send(res)
         })
         .then(() => {
             return rcon.disconnect()
