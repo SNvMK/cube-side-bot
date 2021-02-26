@@ -61,12 +61,7 @@ bot.interactionCommand({
                     return rcon.send('$message')
                 })
                 .then(res => {
-                    const embed = {
-                        title: "RCON запрос"
-                        description: res,
-                        color: 0x7289DA
-                    };
-                    d.message.channel.send({ embed: embed })
+                    d.message.channel.send("\```\n" + res + "\n\```\")
                 })
                 .then(() => {
                     return rcon.disconnect()
