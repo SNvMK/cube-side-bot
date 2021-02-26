@@ -58,7 +58,7 @@ bot.interactionCommand({
         const rcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
         rcon.connect()
         .then(() => {
-            rcon.send('$message')
+            return rcon.send('$message')
         })
         .then(res => {
             d.message.channel.send(res)
