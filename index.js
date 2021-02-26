@@ -1,11 +1,9 @@
 const dbd = require("dbd.js");
-const Rcon = require("modern-rcon");
 
 const bot = new dbd.Bot({
     token: process.env.TOKEN,
     prefix: "/"
 })
-const rcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
 
 bot.status({
     type: "STREAMING",
@@ -55,7 +53,10 @@ bot.interactionCommand({
 
 bot.interactionCommand({
     name: "rcon",
-    code: `$djsEval[rcon.connect()
+    code: `$djsEval[
+        const Rcon = require("modern-rcon");
+        const rcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
+        rcon.connect()
         .then(() => {
             rcon.send('$message')
         })
