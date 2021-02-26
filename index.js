@@ -55,12 +55,12 @@ bot.interactionCommand({
 bot.interactionCommand({
     name: "rcon",
     code: `
-        $djsEval[rcon.connect().then(() => {
-            return rcon.send('$message');
+        $djsEval[d.rcon.connect().then(() => {
+            return d.rcon.send('$message');
           }).then(res => {
             res;
           }).then(() => {
-            return rcon.disconnect();
+            return d.rcon.disconnect();
           });]
     `
 })
