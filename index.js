@@ -1,16 +1,18 @@
 const dbd = require("dbd.js");
+const Rcon = require("modern-rcon");
 
 const bot = new dbd.Bot({
     token: process.env.TOKEN,
     prefix: "/"
 })
+const clientRcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
+
 bot.status({
     type: "STREAMING",
     text: "Minecraft",
     time: 12,
     url: "https://vk.com/csides"
 })
-
 
 bot.interactionCommand({
     name: "пинг",
@@ -25,7 +27,7 @@ bot.interactionCommand({
 bot.interactionCommand({
     name: "запуск",
     code: `
-        $interactionReply[{title:Вывод}{description:$eval[$message;yes]}{color:RED}]
+        $interactionReply[{title:Вывод}{description:$eval[$message;no]}{color:RED}]
         $onlyForIDs[487845696100368384;{title:Вы не владелец бота!}{color:RED}]
     `
 });
@@ -44,10 +46,22 @@ bot.interactionCommand({
     code: `
         <@&804651446158884894> <@&804676398009679873>
         $title[Жалоба!]
-        $description[$message[2] нарушил правило $message[1] со следующим комментарием:$message[3]]
+        $description[<@$message[2]> нарушил правило $message[1] со следующим комментарием: $message[3]]
         $color[RED]
         $author[$username;$authorAvatar]
         $useChannel[804670060424724530]
+    `
+});
+bot.interactionCommand({
+    name: "rcon",
+    code: `
+        $djsEval[rcon.connect().then(() => {
+            return rcon.send('$message');
+          }).then(res => {
+            res;
+          }).then(() => {
+            return rcon.disconnect();
+          });]
     `
 })
 

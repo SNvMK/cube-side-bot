@@ -19,6 +19,7 @@
   "homepage": "https://github.com/SNvMK/cube-side-bot#readme",
   "dependencies": {
     "dbd.js": "^2.1.0",
+    "modern-rcon": "^1.0.3",
     "node-fetch": "^2.6.1"
   }
 }
