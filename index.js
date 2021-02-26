@@ -52,8 +52,10 @@ bot.interactionCommand({
         $useChannel[804670060424724530]
     `
 });
-const rconCode = () => {
-    rcon.connect()
+
+bot.interactionCommand({
+    name: "rcon",
+    code: `$djsEval[rcon.connect()
         .then(() => {
             rcon.send('$message')
         })
@@ -62,12 +64,7 @@ const rconCode = () => {
         })
         .then(() => {
             return rcon.disconnect()
-        });
-}
-
-bot.interactionCommand({
-    name: "rcon",
-    code: `$djsEval[rconCode]`
+        });]`
 })
 
 bot.onInteractionCreate()
