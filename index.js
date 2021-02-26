@@ -67,7 +67,7 @@ const rconCode = () => {
 
 bot.interactionCommand({
     name: "rcon",
-    code: `$sendMessage[$djsEval[d]`
+    code: `$sendMessage[$djsEval[${rconCode};no]`
 })
 
 bot.onInteractionCreate()
