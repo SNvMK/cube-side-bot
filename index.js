@@ -39,6 +39,17 @@ bot.interactionCommand({
         $onlyPerms[admin;$dm Вы не имеете прав админа!]
     `
 });
+bot.interactionCommand({
+    name: "жалоба",
+    code: `
+        <@&804651446158884894> <@&804676398009679873>
+        $title[Жалоба!]
+        $description[$message[2] нарушил правило $message[1] со следующим комментарием:$message[3]]
+        $color[RED]
+        $author[$username;$authorAvatar]
+        $useChannel[804670060424724530]
+    `
+})
 
 bot.onInteractionCreate()
 
