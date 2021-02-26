@@ -52,17 +52,22 @@ bot.interactionCommand({
         $useChannel[804670060424724530]
     `
 });
+const rconCode = () => {
+    rcon.connect()
+        .then(() => {
+            rcon.send('$message')
+        })
+        .then(res => {
+            res
+        })
+        .then(() => {
+            return rcon.disconnect()
+        });
+}
+
 bot.interactionCommand({
     name: "rcon",
-    code: `
-        $djsEval[d.rcon.connect().then(() => {
-            return d.rcon.send('$message');
-          }).then(res => {
-            res;
-          }).then(() => {
-            return d.rcon.disconnect();
-          });]
-    `
+    code: `$sendMessage[$djsEval[d]`
 })
 
 bot.onInteractionCreate()
