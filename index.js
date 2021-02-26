@@ -5,7 +5,7 @@ const bot = new dbd.Bot({
     token: process.env.TOKEN,
     prefix: "/"
 })
-const clientRcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
+const rcon = new Rcon('95.216.62.180', 28582, '5A8C3CA9757DBD9EE8')
 
 bot.status({
     type: "STREAMING",
